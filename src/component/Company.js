@@ -46,7 +46,7 @@ export default class Company extends Component {
           </Col>
         </div>
         <div className="row mt_20">
-          <Col md="3" sm="12" xs="12" lg="3" xl="3" className="mb_20 company" >
+          <Col md="6" sm="12" xs="12" lg="6" xl="6" className="mb_20 company" >
             <div class="card">
               <div class="box">
                 <div class="img">
@@ -62,7 +62,7 @@ export default class Company extends Component {
               </div>
             </div>
           </Col>
-          <Col md="3" sm="12" xs="12" lg="3" xl="3"className="mb_20 company" >
+          {/*<Col md="3" sm="12" xs="12" lg="3" xl="3"className="mb_20 company" >
             <div class="card">
               <div class="box">
                 <div class="img">
@@ -93,8 +93,9 @@ export default class Company extends Component {
                 </span>
               </div>
             </div>
-          </Col>
-          <Col md="3" sm="12" xs="12" lg="3" xl="3" className="mb_20 company" >
+          </Col>*/
+    }
+          <Col md="6" sm="12" xs="12" lg="6" xl="6" className="mb_20 company" >
             <div class="card">
                 <div class="box">
                     <div class="img">
