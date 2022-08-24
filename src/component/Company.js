@@ -2,8 +2,8 @@ import React , { Component }from 'react';
 import {Col,} from 'reactstrap';
 import contImg from '../image/SenthilKumar1.png';
 import velImg from '../image/velu1.jpeg';
-import navImg from '../image/Naveed.jpg';
-import aminImg from '../image/Amin.jfif';
+/*import navImg from '../image/Naveed.jpg';
+import aminImg from '../image/Amin.jfif';*/
 import {Helmet} from "react-helmet";
 export default class Company extends Component {
   constructor(props) {
@@ -46,7 +46,7 @@ export default class Company extends Component {
           </Col>
         </div>
         <div className="row mt_20">
-          <Col md="3" sm="12" xs="12" lg="3" xl="3" className="mb_20 company" >
+          <Col md="6" sm="12" xs="12" lg="6" xl="6" className="mb_20 company" >
             <div class="card">
               <div class="box">
                 <div class="img">
@@ -62,7 +62,7 @@ export default class Company extends Component {
               </div>
             </div>
           </Col>
-          <Col md="3" sm="12" xs="12" lg="3" xl="3"className="mb_20 company" >
+          {/*<Col md="3" sm="12" xs="12" lg="3" xl="3"className="mb_20 company" >
             <div class="card">
               <div class="box">
                 <div class="img">
@@ -93,8 +93,9 @@ export default class Company extends Component {
                 </span>
               </div>
             </div>
-          </Col>
-          <Col md="3" sm="12" xs="12" lg="3" xl="3" className="mb_20 company" >
+          </Col>*/
+    }
+          <Col md="6" sm="12" xs="12" lg="6" xl="6" className="mb_20 company" >
             <div class="card">
                 <div class="box">
                     <div class="img">
