@@ -87,7 +87,7 @@ export default class Home extends Component{
                                     <div className="card-body text-center">
                                         <Col md="12 text-center vcenter" sm="12" xs="12" lg="12" xl="12">
                                             {/* <p className="card-text">StoLav</p> */}
-                                            <p className="card-text">Digital Learning and <br/> Machine Vision </p>
+                                            <p className="card-text">Deep Learning and <br/> Machine Vision </p>
                                         </Col>
                                     </div>
                                 </div>
