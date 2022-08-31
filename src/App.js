@@ -22,18 +22,12 @@ import AlertMUITemplate from "react-alert-template-mui";
 // import twitter from './image/twitter.png'
 const links = [
   { href: '#Home', text: '',menuId:0 },
-  { href: '#services', text: 'Solutions', menuId:1 },
+  { href: '#services', text: 'Services', menuId:1, },
   { href: '#products', text: 'Products', menuId:2, },
-  { href: '#company', text: 'Company',menuId:3 },
-  { className:"frmbtn2", href: '#contact', text: 'Lets Talk', menuId:4 },
+  { href: '#company', text: 'Company',menuId:3, },
+  { className:"frmbtn2", href: '#contact', text: 'Lets Talk', menuId:4, },
 ];
 
-{/*<button
-              className="frmbtn2"
-              onClick={this.onClickMenuItem(3)}
-            >
-              Let's Talk
-            </button> */}
 const createNavItem = ({ href, text, className,menuId }) => (
   <NavItem key={menuId}>
     <NavLink  href={href} className={className}  onClick={()=>mContext.onClickMenuItem(menuId)}>{text}</NavLink>
@@ -92,16 +86,17 @@ export default class App extends Component {
         case "Home":
           this.onClickMenuItem(0);
           break;
-       
-        case "services":
-          this.onClickMenuItem(1);
-          break
-        case "products":
-          this.onClickMenuItem(2);
+        case "company":
+            this.onClickMenuItem(1);
           break;
-          case "company":
-            this.onClickMenuItem(3);
-            break;
+        
+        case "products":
+          this.onClickMenuItem(3);
+          break;
+        case "services":
+          this.onClickMenuItem(2);
+        break
+          
         case "contact":
           this.onClickMenuItem(4);
           break;

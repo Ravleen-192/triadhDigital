@@ -1,4 +1,5 @@
 import React , { Component }from 'react';
+import '../css/bootstrap.min.css';
 import {Col,} from 'reactstrap';
 import contImg from '../image/SenthilKumar1.png';
 import velImg from '../image/velu1.jpeg';
@@ -47,9 +48,9 @@ export default class Company extends Component {
         </div>
         <div className="row mt_20">
           <Col md="6" sm="12" xs="12" lg="6" xl="6" className="mb_20 company" >
-            <div class="card">
-              <div class="box">
-                <div class="img">
+            <div className="card">
+              <div className="box">
+                <div className="img">
                   <img src={contImg}/>
                 </div>
                 <h2>SENTHIL KUMAR<br/><span>Founder & CEO</span></h2>

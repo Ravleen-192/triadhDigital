@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@radix-ui/colors": "github:radix-ui/colors",
+    "@radix-ui/react-hover-card": "^1.0.0",
+    "@stitches/react": "^1.2.8",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -14,13 +17,15 @@
     "react-dom": "^16.13.1",
     "react-google-recaptcha-v3": "^1.5.2",
     "react-helmet": "^6.1.0",
+    "react-icons": "^4.4.0",
     "react-phone-number-input": "^3.0.23",
     "react-player": "^2.6.2",
     "react-responsive-modal": "^5.0.2",
     "react-scripts": "^3.4.1",
     "react-text-rotator": "^0.1.1",
     "react-topbar-progress-indicator": "^4.1.0",
-    "reactstrap": "^8.4.1"
+    "reactstrap": "^8.4.1",
+    "styled-components": "^5.3.5"
   },
   "scripts": {
     "start": "react-scripts start",

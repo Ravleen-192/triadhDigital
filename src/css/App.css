@@ -114,11 +114,17 @@ p.sub_text {
 .mt_20{
   margin-top: 20px;
 }
+.mt_2{
+  margin-top: 2px;
+}
 .mt_10{
   margin-top: 10px;
 }
 .mb_20{
   margin-bottom: 20px;
+}
+.mb_2{
+  margin-bottom: 2px;
 }
 .tag_middile{
   padding: 50px;
@@ -195,6 +201,7 @@ p.sub_text {
 
 .bg_img_front_1 {
   background-image: url('../image/PrimaryPaletteColor.png');
+  
 }
 .bg_img_front_2{
   background-image: url('../image/Accent1.png');
@@ -203,6 +210,22 @@ p.sub_text {
 .bg_img_back{
   background-image: url('../image/Accent2.png');
 }
+.bg_img_sfront_1{
+  background-image: url('../image/U2.png');
+  
+}
+.bg_img_sfront_2{
+  background-image: url('../image/U3.png');
+  
+}
+.bg_img_sfront_3{
+  background-image: url('../image/U5.png');
+  
+}
+.bg_img_sback_1{
+  background-image: url('../image/Fitness.png');
+}
+
 /* .backside {
   position: absolute;
   top: 0;
@@ -274,6 +297,9 @@ p.sub_text {
 }
 .card-body .second-card{
   color: #FFFFFF !important;
+}
+.card-body .serv-second-card{
+  color: #000 !important;
 }
 .frontside{
   font-size: 24px;
@@ -400,6 +426,7 @@ text-decoration :none;
   }
   .title-txt{
     font-size: 18px !important;
+    
   }
   .comp-text{
     height: unset !important;
@@ -522,7 +549,7 @@ text-decoration :none;
 }
 .header-text{
   width: 100% !important;
-  background: #B0EADE;
+  background: #fff;
   border: 1px solid #FFFFFF;
   box-sizing: border-box;
   font-family: 'Muli', sans-serif;
@@ -580,7 +607,7 @@ text-decoration :none;
   font-weight: normal;
   font-size: 24px;
   line-height: 31px;
-  color: #058CD5;
+  color: #000;
   padding-top: 5px;
 }
 
@@ -752,4 +779,150 @@ text-decoration :none;
   border: inherit;
   font-size: 18px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.td__header {
+  display: flex;
+  flex-direction: row;
+}
+
+.td__header-content {
+  flex: 1;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-direction: column;
+  margin-right: 5rem;
+  margin-top: 1.5rem;
+}
+
+.td__header-content h1 {
+  font-family: var(--font-family);
+  font-weight: 800;
+  font-size: 62px;
+  line-height: 75px;
+  letter-spacing: -0.04em;
+  color: rgb(72, 71, 78);
+}
+.td__header-content h2 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 70px;
+  letter-spacing: -0.04em;
+  color:  grey;
+}
+
+.td__header-content h3 {
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 26px;
+  color: grey;
+  margin-top: 1.5rem;
+}
+.td__header-content p {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  color: grey;
+  margin-top: 1.5rem;
+}
+
+.td__header-image {
+  flex: 1;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+}
+
+.td__header-image img {
+  width: 75%;
+  height: 50%;
+}
+
+@media screen and (max-width: 1050px) {
+  .td__header {
+      flex-direction: column;
+  }
+
+  .td__header-content {
+      margin: 0 0 3rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .td__header-content h2 {
+      font-size: 48px;
+      line-height: 60px;
+  }
+
+  .td__header-content h3 {
+      font-size: 16px;
+      line-height: 24px;
+  }
+  .td__header-content h1 {
+    font-size: 50px;
+    line-height: 62px;
+}
+
+.td__header-content p {
+    font-size: 14px;
+    line-height: 22px;
+}
+
+  
+  
+}
+
+@media screen and (max-width: 490px) {
+  .td__header-content h2 {
+      font-size: 34px;
+      line-height: 48px;
+  }
+
+  .td__header-content h3 {
+      font-size: 12px;
+      line-height: 24px;
+  }
+  .td__header-content h1 {
+    font-size: 36px;
+    line-height: 50px;
+}
+
+.td__header-content p {
+    font-size: 10px;
+    line-height: 22px;
+}
+
+}
+.leftbg{
+  top: 85px;
+  left: 0px;
+  width: 100%;
+  height: 599px;
+  
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  opacity: 1;
+}
+.rightbg{
+  background-color: #fff;
+  height: 599px;
+}
+.txt-reg{
+  top: 30px !important;
+  left: inherit !important;
+  width: inherit !important;
+  height: inherit !important;
+  font-size: 12px !important;
+}
+.input-reg{
+  top: 200px !important;
+  left: 0px !important;
 }

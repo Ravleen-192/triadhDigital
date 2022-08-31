@@ -1,5 +1,5 @@
 import React , { Component }from 'react';
-import '../css/Home.css'
+
 import {Col,} from 'reactstrap';
 
 import ReactCardFlip from 'react-card-flip';
