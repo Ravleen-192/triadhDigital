@@ -152,56 +152,52 @@ class Contact extends Component {
               }
             } />
         </GoogleReCaptchaProvider>
-        <div class=" text-center contact-text mb_20">
-          <div class="col-md-6">
+        <div class=" wrap text-center contact-text mb_20">
+          <div class="resp col-md-6">
             <div className="row mt_20">
-              <Col md="2" lg="2" xl="2"></Col>
-              <Col md="3" sm="3" xs="3" lg="3" xl="3">
-                <Label className="content lbl_txt">Name<sup className="red_star">*</sup></Label>
-              </Col>
-              <Col md="4" sm="9" xs="9" lg="4" xl="4">
-                <span className="sup_li">:</span>
-                {/* <input type="file" onChange={(event)=>this.Upload(event)}></input> */}
-                <input type="text" className="form-control"
-                  value={contactModel.name ? contactModel.name : ""}
-                  ref={"name"}
-                  onChange={(event) => {
-                    event.preventDefault();
-                    contactModel.name = event.target.value;
-                    this.setState({ contactModel, nameError: null })
-                  }}
-                  maxLength={50} required></input>
-                {this.state.nameError ? <span className="error-lbl">{this.state.nameError}</span> : null}
-              </Col>
-              <Col md="2" lg="2" xl="2"></Col>
-            </div><div className="row mt_20">
-              <Col md="2" lg="2" xl="2"></Col>
-              <Col md="3" sm="3" xs="3" lg="3" xl="3">
-                <Label className="content lbl_txt">Job Title<sup className="red_star">*</sup></Label>
-              </Col>
-              <Col md="4" sm="9" xs="9" lg="4" xl="4">
-                <span className="sup_li">:</span>
-                <input type="text" className="form-control"
-                  value={contactModel.title ? contactModel.title : ''}
-                  ref={"title"}
-                  onChange={(event) => {
-                    event.preventDefault();
-                    contactModel.title = event.target.value;
-                    this.setState({ contactModel, titleError: null })
-                  }}
-                  maxLength={30}
-                  required></input>
-                {this.state.titleError ? <span className="error-lbl">{this.state.titleError}</span> : null}
-              </Col>
-              <Col md="2" lg="2" xl="2"></Col>
-            </div></div>
-          <div class="col-md-6"><div className="row mt_20">
-            <Col md="2" lg="2" xl="2"></Col>
-            <Col md="3" sm="3" xs="3" lg="3" xl="3">
-              <Label className="content lbl_txt">Work Email<sup className="red_star">*</sup></Label>
-            </Col>
-            <Col md="4" sm="9" xs="9" lg="4" xl="4">
-              <span className="sup_li">:</span>
+
+              <div><Label className="content lbl_txt">Name:<sup className="red_star">*</sup></Label></div>
+
+              <div>
+              {/* <input type="file" onChange={(event)=>this.Upload(event)}></input> */}
+              <input type="text" className="form-control"
+                value={contactModel.name ? contactModel.name : ""}
+                ref={"name"}
+                onChange={(event) => {
+                  event.preventDefault();
+                  contactModel.name = event.target.value;
+                  this.setState({ contactModel, nameError: null })
+                }}
+                maxLength={50} required></input>
+              {this.state.nameError ? <span className="error-lbl">{this.state.nameError}</span> : null}
+              </div>
+            </div>
+            <div className="row mt_20">
+
+              <div><Label className="content lbl_txt">Job Title:<sup className="red_star">*</sup></Label></div>
+
+              <div>
+              <input type="text" className="form-control"
+                value={contactModel.title ? contactModel.title : ''}
+                ref={"title"}
+                onChange={(event) => {
+                  event.preventDefault();
+                  contactModel.title = event.target.value;
+                  this.setState({ contactModel, titleError: null })
+                }}
+                maxLength={30}
+                required></input>
+              {this.state.titleError ? <span className="error-lbl">{this.state.titleError}</span> : null}
+              </div>
+            </div>
+            </div>
+          <div class="resp col-md-6">
+            <div className="row mt_20">
+
+
+              <div><Label className="content lbl_txt">Work Email:<sup className="red_star">*</sup></Label></div>
+
+              <div>
               <input type="email" className="form-control"
                 value={contactModel.email ? contactModel.email : ''}
                 ref={"email"}
@@ -212,15 +208,12 @@ class Contact extends Component {
                 }}
                 required></input>
               {this.state.emailError ? <span className="error-lbl">{this.state.emailError}</span> : null}
-            </Col>
-            <Col md="2" lg="2" xl="2"></Col>
-          </div><div className="row mt_20">
-              <Col md="2" lg="2" xl="2"></Col>
-              <Col md="3" sm="3" xs="3" lg="3" xl="3">
-                <Label className="content lbl_txt">Work Phone<sup className="red_star">*</sup></Label>
-              </Col>
-              <Col md="4" sm="9" xs="9" lg="4" xl="4">
-                <span className="sup_li">:</span>
+              </div>
+            </div><div className="row mt_20">
+
+              <div><Label className="content lbl_txt">Work Phone:<sup className="red_star">*</sup></Label></div>
+
+              <div>
                 <PhoneInput
                   international
                   defaultCountry="US"
@@ -234,9 +227,8 @@ class Contact extends Component {
                   }}
                 />
                 {this.state.phoneError ? <span className="error-lbl">{this.state.phoneError}</span> : null}
-              </Col>
-              <Col md="2" lg="2" xl="2"></Col>
-            </div></div>
+
+              </div></div> </div>
         </div>
         <div className="text-left  contact">
           <Col >

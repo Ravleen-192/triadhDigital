@@ -4,6 +4,8 @@ import React , { Component }from 'react';
 import {node} from 'prop-types';
 import './css/App.css';
 import './css/bootstrap.min.css';
+
+
 import {
   Collapse,
   Navbar,
@@ -17,6 +19,7 @@ import ImportComponent from './common/ImportComponent';
 import logo from './image/logo_new.png';
 import { positions, Provider } from "react-alert";
 import AlertMUITemplate from "react-alert-template-mui";
+
 // import instagram from "./image/instagram.JPEG";
 // import linkedin from './image/linkin.png';
 // import twitter from './image/twitter.png'
@@ -26,6 +29,7 @@ const links = [
   { href: '#products', text: 'Products', menuId:2, },
   { href: '#company', text: 'Company',menuId:3, },
   { className:"frmbtn2", href: '#contact', text: 'Lets Talk', menuId:4, },
+  
 ];
 
 const createNavItem = ({ href, text, className,menuId }) => (
@@ -166,6 +170,7 @@ export default class App extends Component {
           </Col> 
           </Col>
         </footer>
+       
       </div>
     );
   }

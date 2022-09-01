@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Col, } from 'reactstrap';
 //import Computer_vision from '../image/Computer_vision.png';
 import '../css/App.css'
-import NLP from '../image/machine-vision.jpg';
+import MV from '../image/machine-vision.jpg';
 import ReactCardFlip from 'react-card-flip';
 import { Helmet } from "react-helmet";
 var mContext;
 
 
-export default class Services extends Component {
+export default class Plutus extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -44,8 +44,8 @@ export default class Services extends Component {
             <div className="container-fluid text-center">
                 <Helmet>
                     <meta charSet="utf-8" />
-                    <title>AI, ML, Deep Learning Turn-key and Tailor-made Solutions and Services</title>
-                    <meta name="description" content="AI, ML, Deep Learning, ComputerVision, Pose, Facial, Object, Speech-to-text, text-to-speech, AWS SageMaker Services" />
+                    <title>AI, ML, Deep Learning Turn-key and Tailor-made Solutions and Theia</title>
+                    <meta name="description" content="AI, ML, Deep Learning, ComputerVision, Pose, Facial, Object, Speech-to-text, text-to-speech, AWS SageMaker Theia" />
                     {/* <link rel="canonical" href="" /> */}
                 </Helmet>
                 
@@ -62,7 +62,7 @@ export default class Services extends Component {
                         </div>
 
                         <div className="td__header-image" md="6" sm="6" xs="6" lg="6" xl="6">
-                            <img src={NLP} />
+                            <img src={MV} />
                         </div>
                     </div>
                     <Col md="4" sm="12" xs="12" lg="4" xl="4" className="mb_20">
@@ -73,7 +73,7 @@ export default class Services extends Component {
                                 </div>
                                 <div >
                                         <Col md="12" sm="12" xs="12" lg="12" xl="12">
-                                            <button className="frmSbtn2" >Consulting Services </button>
+                                            <button className="frmSbtn2" >Consulting Theia </button>
                                         </Col>
                                     </div>
                             </div>
@@ -95,7 +95,7 @@ export default class Services extends Component {
                                 </div>
                                 <div >
                                         <Col md="12 text-bottom " sm="12" xs="12" lg="12" xl="12">
-                                            <button className="frmSbtn2">Managed and Professional Services</button>
+                                            <button className="frmSbtn2">Managed and Professional Theia</button>
                                         </Col>
                                     </div>
                             </div>
@@ -116,7 +116,7 @@ export default class Services extends Component {
                                 </div>
                                 <div >
                                         <Col md="12 text-bottom " sm="12" xs="12" lg="12" xl="12">
-                                            <button className="frmSbtn2">Staffing Services</button>
+                                            <button className="frmSbtn2">Staffing Theia</button>
                                         </Col>
                                     </div>
                             </div>

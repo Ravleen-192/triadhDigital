@@ -3,8 +3,6 @@ import '../css/bootstrap.min.css';
 import {Col,} from 'reactstrap';
 import contImg from '../image/SenthilKumar1.png';
 import velImg from '../image/velu1.jpeg';
-/*import navImg from '../image/Naveed.jpg';
-import aminImg from '../image/Amin.jfif';*/
 import {Helmet} from "react-helmet";
 export default class Company extends Component {
   constructor(props) {
