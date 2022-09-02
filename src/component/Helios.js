@@ -53,7 +53,7 @@ export default class Helios extends Component {
                     <div className="td__header" >
                         <div className=" td__header-content" md="6" sm="6" xs="6" lg="6" xl="6">
                             <p className=" td__header-content">DEEP LEARNING.
-                                MACHINE VISION.
+                                Helios.
                                 DATA STRATEGY.
                                 DATA PRODUCT.
                                 DATA MESH .

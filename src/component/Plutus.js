@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, } from 'reactstrap';
-//import Computer_vision from '../image/Computer_vision.png';
+
 import '../css/App.css'
 import MV from '../image/machine-vision.jpg';
 import ReactCardFlip from 'react-card-flip';
@@ -53,7 +53,7 @@ export default class Plutus extends Component {
                     <div className="td__header" >
                         <div className=" td__header-content" md="6" sm="6" xs="6" lg="6" xl="6">
                             <p className=" td__header-content">DEEP LEARNING.
-                                MACHINE VISION.
+                                Plutus.
                                 DATA STRATEGY.
                                 DATA PRODUCT.
                                 DATA MESH .
