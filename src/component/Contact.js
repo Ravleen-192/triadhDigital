@@ -17,7 +17,7 @@ TopBarProgress.config({
   shadowBlur: 5,
   shadowColor: "#B0EADE"
 });
-export default class Contact extends Component {
+class Contact extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,6 +37,7 @@ export default class Contact extends Component {
   submitForm() {
     let { alert } = this.props;
     let { contactModel } = this.state;
+
     //loadReCaptcha("6LcsnPIUAAAAAFtykko0C3nRDGC52DmOaLsSZbKx", this.callback);
     if (!contactModel.name) {
       this.refs.name.focus();
@@ -271,13 +272,13 @@ export default class Contact extends Component {
     );
   }
 }
-/*
+
 export default () => {
   const alert = useAlert();
   return (
     <Contact alert={alert} />
   )
-}*/
+}
 class ContactModel {
   constructor() {
     // this.name="test";
