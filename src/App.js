@@ -11,7 +11,7 @@ import Services from "./component/Services";
 import Products from "./component/Products";
 import Company from "./component/Company";
 import Capabilities from "./component/Capabilities";
-import Contact from "./component/contact.js"
+import contact from "./component/contact.js"
 import Theia from "./component/Theia";
 import Helios from "./component/Helios";
 import Plutus from "./component/Plutus";
@@ -137,13 +137,7 @@ class App extends Component {
           
         />
       );
-      case "contact":
-        return( <Contact
-          switchComponent={this.switchComponent}
-          setOnLoad={this.setOnLoad}
-          
-        />
-      );
+      
       case "Services":
         return (
           <Services
