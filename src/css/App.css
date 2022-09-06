@@ -210,20 +210,10 @@ p.sub_text {
 .bg_img_back{
   background-image: url('../image/Accent2.png');
 }
-.bg_img_sfront_1{
-  background-image: url('../image/consulting-services.jpg');
-  
-}
-.bg_img_sfront_2{
-  background-image: url('../image/professional-managed-services.jpg');
-  
-}
-.bg_img_sfront_3{
-  background-image: url('../image/staffing-services.jpg');
-  
-}
+
 .bg_img_sback_1{
   background-image: url('../image/Fitness.png');
+  
 }
 
 /* .backside {
@@ -260,7 +250,7 @@ p.sub_text {
 } */
 .back-text{
   color: #FFFFFF;
-  text-align: start;
+  text-align: center;
 }
 
 .frontside .card,
@@ -305,6 +295,7 @@ p.sub_text {
 .frontside{
   font-size: 24px;
   line-height: 31px;
+  
 }
 .backside{
   font-size: 18px;
@@ -815,7 +806,7 @@ text-decoration :none;
 .td__header-content {
   flex: 1;
   display: flex;
-  justify-content: left;
+  justify-content: Center;
   align-items: left;
   flex-direction: column;
   margin-right: 5rem;
@@ -880,14 +871,16 @@ text-decoration :none;
   flex: 1;
   display: flex;
   justify-content: center;
+ 
   align-items: center;
   margin-right: 5rem;
   margin-top: 1.5rem;
+  
 }
 
 .td__header-image img {
-  width: 75%;
-  height: 75%;
+  width: 100%;
+  height: 100%;
 }
 
 @media screen and (max-width: 1050px) {

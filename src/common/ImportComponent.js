@@ -9,7 +9,7 @@ const  ImportCompnent =(menuId)=>{
         case 4:
             return require('../component/Capabilities');
         case 5:
-            return require('../component/Contact');
+            return require('../component/contact');
         default:
             return require("../component/Home");
     }

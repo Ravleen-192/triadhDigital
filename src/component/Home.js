@@ -92,7 +92,7 @@ export default class Home extends Component{
                                     </div>
                                 </div>
                             </div>
-                            <div className="backside" onClick={(e)=>this.handleClick(e,"first")}>
+                            <div className="backside" onClick={(e)=>this.handleClick(e,"first")} >
                                 <div className="card bg_img_back">
                                     <div className="card-body text-center">
                                         <p className="card-text back-text"> Get insights from real-time videos and images, deploy on-prem, cloud, IoT and embedded devices.<a className="link" onClick ={()=>this.props.onClickMenuItem(3)}><strong>Learn more</strong></a></p>

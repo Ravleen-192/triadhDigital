@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { Col, } from 'reactstrap';
 //import Computer_vision from '../image/Computer_vision.png';
 import '../css/App.css'
-import ServOverview from '../image/ServiceOverview.jpg';
+import MV from '../image/machine-vision.jpg';
+import SC from '../image/consulting-services.jpg';
+import PMS from '../image/professional-managed-services.jpg';
+import SS from '../image/staffing-services.jpg';
+
 import ReactCardFlip from 'react-card-flip';
 import { Helmet } from "react-helmet";
 var mContext;
@@ -50,24 +54,26 @@ export default class Services extends Component {
                 </Helmet>
 
                 <div className=" row container-fuild " md="12" sm="12" xs="12" lg="12" xl="12">
-                    <div className=" td__header" >
+                    <div className=" td__header mb_20 " >
                         <div className=" td__header-content" md="6" sm="6" xs="6" lg="6" xl="6">
-                            <h3 className=" td__header-content">Overview </h3>
-                            <p className=" td__header-content">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br/>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                <br/> Duis aute irure dolor in reprehenderit in voluptate velit esse <br/>cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  ​</p>
-
+                        <p className=" td__header-content">DEEP LEARNING.
+                                MACHINE VISION.
+                                DATA STRATEGY.
+                                DATA PRODUCT.
+                                DATA MESH .
+                                SERVICE NOW. ​</p>
                         </div>
 
                         <div className=" td__header-image" md="6" sm="6" xs="6" lg="6" xl="6">
-                            <img src={ServOverview} />
+                            <img src={MV} />
                         </div>
                     </div>
+                   
                     <Col md="4" sm="12" xs="12" lg="4" xl="4" className="mb_20">
                         <ReactCardFlip isFlipped={this.state.isFlipped1} flipDirection="vertical" infinite flipSpeedFrontToBack={1.5} flipSpeedBackToFront={1.5}>
                             <div className="frontside" onClick={(e) => this.handleClick(e, "first")}>
-                                <div className="card bg_img_sfront_1">
-
+                                <div className="card ">
+                                    <img src={SC} />
                                 </div>
                                 <div >
                                     <Col md="12" sm="12" xs="12" lg="12" xl="12">
@@ -88,8 +94,8 @@ export default class Services extends Component {
                     <Col md="4" sm="12" xs="12" lg="4" xl="4" className="mb_20">
                         <ReactCardFlip isFlipped={this.state.isFlipped2} flipDirection="horizontal" infinite flipSpeedFrontToBack={1.5} flipSpeedBackToFront={1.5}>
                             <div className="frontside" onClick={(e) => this.handleClick(e, "second")}>
-                                <div className="card bg_img_sfront_2">
-
+                                <div className="card ">
+                                <img src={PMS} />
                                 </div>
                                 <div >
                                     <Col md="12 text-bottom " sm="12" xs="12" lg="12" xl="12">
@@ -109,12 +115,12 @@ export default class Services extends Component {
                     <Col md="4" sm="12" xs="12" lg="4" xl="4" className="mb_20">
                         <ReactCardFlip isFlipped={this.state.isFlipped3} flipDirection="vertical" infinite flipSpeedFrontToBack={1.5} flipSpeedBackToFront={1.5}>
                             <div className="frontside" onClick={(e) => this.handleClick(e, "third")}>
-                                <div className="card bg_img_sfront_3">
-
+                                <div className="card ">
+                                <img src={SS} />
                                 </div>
                                 <div >
                                     <Col md="12 text-bottom " sm="12" xs="12" lg="12" xl="12">
-                                        <button className="frmSbtn2">Staffing Services</button>
+                                        <button className="frmSbtn2">Talent</button>
                                     </Col>
                                 </div>
                             </div>

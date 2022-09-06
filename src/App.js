@@ -11,6 +11,7 @@ import Services from "./component/Services";
 import Products from "./component/Products";
 import Company from "./component/Company";
 import Capabilities from "./component/Capabilities";
+import Contact from "./component/contact"
 
 import Theia from "./component/Theia";
 import Helios from "./component/Helios";
@@ -34,6 +35,12 @@ const options = {
   timeout: 10000,
   position: positions.MIDDLE
 };
+
+const createNavItem = ({ key,href, text, className, menuId,source, isActive}) => (
+  <NavItem key={menuId}  active={isActive}>
+    <NavLink active={isActive} href={href} className={className} onClick={() => { mContext.switchComponent(source); this.setMenuActive("Landing", key); mContext.onClickMenuItem(menuId)}}>{text}</NavLink>
+  </NavItem>
+);
 class App extends Component {
   constructor() {
     super();
@@ -49,13 +56,15 @@ class App extends Component {
         { href: '#Products', text: 'Products', menuId: 2, source: "Products", isActive: false },
         { href: '#Company', text: 'Company', menuId: 3, source: "Company", isActive: false },
         { href: '#Capabilities', text: 'Capabilities', menuId: 4, source: "Capabilities", isActive: false },
-        { className: "frmbtn2", href: '#Contact', text: 'Lets Talk', menuId: 5, source: "contact", isActive: false },
+        { className: "frmbtn2", href: '#contact', text: 'Lets Talk', menuId: 5, source: "contact", isActive: false },
 
       ],
       ProdLinks: [
         { href: '#Helios', text: 'Helios', menuId: 0, source: "Helios", isActive: true },
         { href: "#Theia", text: "Theia", menuId: 1, source: "Theia", isActive: false },
         { href: '#Plutus', text: 'Plutus', menuId: 2, source: "Plutus", isActive: false },
+        { href: '#Capabilities', text: 'Capabilities', menuId: 3, source: "Capabilities", isActive: false },
+        
       ]
     };
     mContext = this;
@@ -125,6 +134,13 @@ class App extends Component {
     switch (this.state.status) {
       case "Home":
         return( <Home
+          switchComponent={this.switchComponent}
+          setOnLoad={this.setOnLoad}
+          
+        />
+      );
+      case "contact":
+        return( <Contact
           switchComponent={this.switchComponent}
           setOnLoad={this.setOnLoad}
           
@@ -203,7 +219,8 @@ class App extends Component {
   switchComponent = status => {
     let { ProdLinks} = this.state;
     this.setState({ status });
-    if (status === "Products") {
+    this.setState({ child: <Component.default onClickMenuItem={this.onClickMenuItem}></Component.default> });
+        if (status === "Products") {
       mContext.setState({ user: status });
       this.setState({ ProdLinks });
 
@@ -314,7 +331,7 @@ class App extends Component {
 
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-                {links.map((element, key) => {
+              {links.map((element, key) => {
                   return (
                     <NavItem key={element.menuId} active={element.isActive}>
                       <NavLink active={element.isActive} href={element.href} className={element.className}
@@ -327,13 +344,13 @@ class App extends Component {
           </Navbar> :
             <Navbar light expand="md" sticky={'top'} className="navbar-header">
 
-              <NavbarBrand href="/"><img className="img img-responsive navbrand" src={logo} alt="logo" /></NavbarBrand>
+            <NavbarBrand href="/"><img className="img img-responsive navbrand" src={logo} alt="logo" /></NavbarBrand>
 
-              {this.state.isOpen ?
-                <a onClick={this.toggle} type="button" className="navbar-toggle pull-right closebtn">X</a>
-                :
-                <NavbarToggler onClick={this.toggle} />
-              }
+            {this.state.isOpen ?
+              <a onClick={this.toggle} type="button" className="navbar-toggle pull-right closebtn">X</a>
+              :
+              <NavbarToggler onClick={this.toggle} />
+            }
 
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="ml-auto custom-menu" navbar>
