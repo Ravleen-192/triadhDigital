@@ -11,8 +11,7 @@ import Services from "./component/Services";
 import Products from "./component/Products";
 import Company from "./component/Company";
 import Capabilities from "./component/Capabilities";
-import Contact from "./component/contact"
-
+import Contact from "./component/contact.js"
 import Theia from "./component/Theia";
 import Helios from "./component/Helios";
 import Plutus from "./component/Plutus";
@@ -55,7 +54,6 @@ class App extends Component {
         { href: '#Services', text: 'Services', menuId: 1, source: "Services", isActive: false },
         { href: '#Products', text: 'Products', menuId: 2, source: "Products", isActive: false },
         { href: '#Company', text: 'Company', menuId: 3, source: "Company", isActive: false },
-        { href: '#Capabilities', text: 'Capabilities', menuId: 4, source: "Capabilities", isActive: false },
         { className: "frmbtn2", href: '#contact', text: 'Lets Talk', menuId: 5, source: "contact", isActive: false },
 
       ],
