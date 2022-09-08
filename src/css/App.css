@@ -801,25 +801,31 @@ text-decoration :none;
   display: flex;
   flex-direction: row;
 }
-
+.td__Prodheader {
+  display: flex;
+  flex-direction: row;
+  background: #fff 0% 0% no-repeat padding-box !important;
+  border: 2px rgba(0, 0, 0, 0.25);
+  box-shadow:0 20px 50px rgba(0,0,0,.1); 
+}
 
 .td__header-content {
   flex: 1;
   display: flex;
   justify-content: Center;
-  align-items: left;
+  align-items: Center;
   flex-direction: column;
-  margin-right: 5rem;
+  
   margin-top: 1.5rem;
 }
 
 .td__header-content h1 {
   font-family: var(--font-family);
   font-weight: 800;
-  font-size: 62px;
+  font-size: 60px;
   line-height: 75px;
   letter-spacing: -0.04em;
-  color: rgb(72, 71, 78);
+  color:  #0D9F98;
 }
 .td__header-content h2 {
   font-family: var(--font-family);
@@ -835,7 +841,7 @@ text-decoration :none;
   font-weight: 300;
   font-size: 30px;
   line-height: 26px;
-  color: grey;
+  color:  #0D9F98;
   margin-top: 1.5rem;
 }
 
@@ -846,8 +852,13 @@ text-decoration :none;
   line-height: 26px;
   color: grey;
   margin-top: 1.5rem;
+
+  box-shadow:0 20px 50px rgba(0,0,0,.1); 
 }
 .td__Prodheader-content h3:hover {
+  color:  #0D9F98 !important;
+}
+.td__Prodheader-content p:hover {
   color:  #0D9F98 !important;
 }
 .td__Prodheader-content p {
@@ -871,9 +882,7 @@ text-decoration :none;
   flex: 1;
   display: flex;
   justify-content: center;
- 
-  align-items: center;
-  margin-right: 5rem;
+   align-items: center;
   margin-top: 1.5rem;
   
 }

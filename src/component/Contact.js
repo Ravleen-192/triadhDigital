@@ -17,7 +17,7 @@ TopBarProgress.config({
   shadowBlur: 5,
   shadowColor: "#B0EADE"
 });
-class Contact extends Component {
+export default class Contact extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -273,12 +273,12 @@ class Contact extends Component {
   }
 }
 
-export default () => {
+/*export default () => {
   const alert = useAlert();
   return (
     <Contact alert={alert} />
   )
-}
+}*/
 class ContactModel {
   constructor() {
     // this.name="test";

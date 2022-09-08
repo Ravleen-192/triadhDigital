@@ -10,8 +10,8 @@ import Home from "./component/Home";
 import Services from "./component/Services";
 import Products from "./component/Products";
 import Company from "./component/Company";
-import Capabilities from "./component/Capabilities";
-import contact from "./component/contact.js"
+
+import Contact from "./component/contact"
 import Theia from "./component/Theia";
 import Helios from "./component/Helios";
 import Plutus from "./component/Plutus";
@@ -35,11 +35,7 @@ const options = {
   position: positions.MIDDLE
 };
 
-const createNavItem = ({ key,href, text, className, menuId,source, isActive}) => (
-  <NavItem key={menuId}  active={isActive}>
-    <NavLink active={isActive} href={href} className={className} onClick={() => { mContext.switchComponent(source); this.setMenuActive("Landing", key); mContext.onClickMenuItem(menuId)}}>{text}</NavLink>
-  </NavItem>
-);
+
 class App extends Component {
   constructor() {
     super();
@@ -54,15 +50,8 @@ class App extends Component {
         { href: '#Services', text: 'Services', menuId: 1, source: "Services", isActive: false },
         { href: '#Products', text: 'Products', menuId: 2, source: "Products", isActive: false },
         { href: '#Company', text: 'Company', menuId: 3, source: "Company", isActive: false },
-        { className: "frmbtn2", href: '#contact', text: 'Lets Talk', menuId: 5, source: "contact", isActive: false },
+        { className: "frmbtn2", href: '#contact', text: 'Lets Talk', menuId: 4, source: "contact", isActive: false },
 
-      ],
-      ProdLinks: [
-        { href: '#Helios', text: 'Helios', menuId: 0, source: "Helios", isActive: true },
-        { href: "#Theia", text: "Theia", menuId: 1, source: "Theia", isActive: false },
-        { href: '#Plutus', text: 'Plutus', menuId: 2, source: "Plutus", isActive: false },
-        { href: '#Capabilities', text: 'Capabilities', menuId: 3, source: "Capabilities", isActive: false },
-        
       ]
     };
     mContext = this;
@@ -109,11 +98,9 @@ class App extends Component {
         case "Products":
           this.onClickMenuItem(3);
           break;
-        case "Capabilities":
-          this.onClickMenuItem(4);
-          break;
+       
         case "contact":
-          this.onClickMenuItem(5);
+          this.onClickMenuItem(4);
           break;
         default:
           break;
@@ -137,7 +124,13 @@ class App extends Component {
           
         />
       );
-      
+      case "contact":
+        return( <Contact
+          switchComponent={this.switchComponent}
+          setOnLoad={this.setOnLoad}
+          
+        />
+      );
       case "Services":
         return (
           <Services
@@ -155,15 +148,6 @@ class App extends Component {
           />
         );
 
-      case "Capabilities":
-        return (
-          <Capabilities
-            switchComponent={this.switchComponent}
-           
-            setOnLoad={this.setOnLoad}
-           
-          />
-        );
         case "Products":
           
           return (
@@ -209,14 +193,8 @@ class App extends Component {
     }
   };
   switchComponent = status => {
-    let { ProdLinks} = this.state;
+    
     this.setState({ status });
-    this.setState({ child: <Component.default onClickMenuItem={this.onClickMenuItem}></Component.default> });
-        if (status === "Products") {
-      mContext.setState({ user: status });
-      this.setState({ ProdLinks });
-
-    }
     console.log("status = ",status);
     this.closeNavbar();
   };
@@ -284,34 +262,15 @@ class App extends Component {
         break;
     }
   }
-  setMenuActive(source, key) {
-    let { links, ProdLinks} = this.state;
-    switch (source) {
-      case "Landing":
-        links.map((element, index) => {
-          element.isActive = index == key ? true : false;
-        });
-        this.setState({ links });
-        break;
-        
-      case "Helios":
-        ProdLinks.map((element, index) => {
-          element.isActive = index == key ? true : false;
-        });
-        this.setState({ ProdLinks });
-        break;
-      default:
-        break;
-    }
-  }
+
   render() {
-    let { noti_open,user,  ProdLinks, links, child} = this.state;
+    let {  links} = this.state;
     var year = new Date().getFullYear();
     return (
       <section>
         <div>
         {/*<Router>*/}
-          {!user ? <Navbar light expand="md" sticky={'top'} className="navbar-header">
+          <Navbar light expand="md" sticky={'top'} className="navbar-header">
 
             <NavbarBrand href="/"><img className="img img-responsive navbrand" src={logo} alt="logo" /></NavbarBrand>
 
@@ -327,51 +286,13 @@ class App extends Component {
                   return (
                     <NavItem key={element.menuId} active={element.isActive}>
                       <NavLink active={element.isActive} href={element.href} className={element.className}
-                        onClick={() => { mContext.switchComponent(element.source); this.setMenuActive("Landing", key) }}>{element.text}</NavLink>
+                        onClick={() => { mContext.switchComponent(element.source);}}>{element.text}</NavLink>
                     </NavItem>
                   )
                 })}
               </Nav>
             </Collapse>
-          </Navbar> :
-            <Navbar light expand="md" sticky={'top'} className="navbar-header">
-
-            <NavbarBrand href="/"><img className="img img-responsive navbrand" src={logo} alt="logo" /></NavbarBrand>
-
-            {this.state.isOpen ?
-              <a onClick={this.toggle} type="button" className="navbar-toggle pull-right closebtn">X</a>
-              :
-              <NavbarToggler onClick={this.toggle} />
-            }
-
-              <Collapse isOpen={this.state.isOpen} navbar>
-                <Nav className="ml-auto custom-menu" navbar>
-                  {ProdLinks.map((element, key) => {
-                    return (
-                      <NavItem key={element.menuId} active={element.isActive}>
-                        <NavLink active={element.isActive} href={element.href} className={element.className}
-                          onClick={() => { mContext.switchComponent(element.source); this.setMenuActive("Helios", key) }}>{element.text}</NavLink>
-                      </NavItem>
-                    )
-                  })}
-                  <NavItem className={noti_open ? "dropdown notifications-menu open" : "dropdown notifications-menu"} >
-                    <a onClick={() => { this.toggleNavMenu("noti") }} />
-                  </NavItem>
-                  <NavItem 
-                    onClick={() => {
-                      mContext.switchComponent("Products");
-                      ProdLinks.map((element, index) => {
-                        element.isActive = false;
-                      });
-                      this.setState({ ProdLinks });
-                    }}>
-                    
-                    
-                  </NavItem>
-                  
-                </Nav>
-              </Collapse>
-            </Navbar>}
+          </Navbar> 
           <div>{this.AuthComponent()}</div>
         <footer className="footer">
           <Col className="row">

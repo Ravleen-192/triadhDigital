@@ -7,8 +7,6 @@ const  ImportCompnent =(menuId)=>{
         case 3:
             return require('../component/Products');
         case 4:
-            return require('../component/Capabilities');
-        case 5:
             return require('../component/contact');
         default:
             return require("../component/Home");
