@@ -8,13 +8,14 @@ import './css/bootstrap.min.css';
 import ImportComponent from './common/ImportComponent';
 import Home from "./component/Home";
 import Services from "./component/Services";
-import Products from "./component/Products";
+import TrayMenu from "./component/TrayMenu";
 import Company from "./component/Company";
 
 import Contact from "./component/contact"
 import Theia from "./component/Theia";
 import Helios from "./component/Helios";
 import Plutus from "./component/Plutus";
+
 import { positions, Provider } from "react-alert";
 import AlertMUITemplate from "react-alert-template-mui";
 import {
@@ -42,15 +43,15 @@ class App extends Component {
     this.state = {
       isOpen: false,
       child: node,
-      user: null, // will contain our user data object when signed in
+      trayuser: null, // will contain our user data object when signed in
+      sideDrawerOpen: false,
       status: "Home", loaded: true, hasError: false, type: "", message: "",
       noti_open: false, user_open: false,
       links: [
-        { href: '#Home', text: '', menuId: 0, source: "Home", isActive: true },
-        { href: '#Services', text: 'Services', menuId: 1, source: "Services", isActive: false },
-        { href: '#Products', text: 'Products', menuId: 2, source: "Products", isActive: false },
-        { href: '#Company', text: 'Company', menuId: 3, source: "Company", isActive: false },
-        { className: "frmbtn2", href: '#contact', text: 'Lets Talk', menuId: 4, source: "contact", isActive: false },
+        { href: '#Services', text: 'Services', menuId: 0, source: "Services", isActive: false },
+        { href: '#TrayMenu', text: 'Products', menuId: 1, source: "TrayMenu", isActive: false },
+        { href: '#Company', text: 'Company', menuId: 2, source: "Company", isActive: false },
+        { className: "frmbtn2", href: '#contact', text: 'Lets Talk', menuId: 3, source: "contact", isActive: false },
 
       ]
     };
@@ -59,13 +60,13 @@ class App extends Component {
     this.setOnLoad = this.setOnLoad.bind(this);
     this.onClickMenuItem = this.onClickMenuItem.bind(this);
     this.toggle = this.toggle.bind(this);
-    
+
   }
   componentWillMount() {
     this.onClickMenuItem(0);
     //window.location.hash = "#home";
   }
-
+ 
   onClickMenuItem(menuId) {
     var Component = ImportComponent(menuId);
     this.setState({ child: <Component.default onClickMenuItem={this.onClickMenuItem}></Component.default> });
@@ -75,7 +76,7 @@ class App extends Component {
     var url = linkedin ? "https://www.linkedin.com/company/triadh-ai/?viewAsMember=true" : " https://www.instagram.com/triadhai/";
     window.open(url, "_blank");
   }
-  
+
   componentDidMount() {
     this.setOnLoad(false);
     window.history.pushState(null, null, window.location.pathname);
@@ -95,10 +96,10 @@ class App extends Component {
         case "Services":
           this.onClickMenuItem(2);
           break
-        case "Products":
+        case "TrayMenu":
           this.onClickMenuItem(3);
           break;
-       
+
         case "contact":
           this.onClickMenuItem(4);
           break;
@@ -114,91 +115,95 @@ class App extends Component {
   componentWillUnmount = () => {
     window.removeEventListener('popstate', this.onBackButtonEvent);
   }
-  
+
   AuthComponent = () => {
     switch (this.state.status) {
       case "Home":
-        return( <Home
+        return (<Home
           switchComponent={this.switchComponent}
           setOnLoad={this.setOnLoad}
-          
+
         />
-      );
+        );
       case "contact":
-        return( <Contact
+        return (<Contact
           switchComponent={this.switchComponent}
           setOnLoad={this.setOnLoad}
-          
+
         />
-      );
+        );
       case "Services":
         return (
           <Services
             switchComponent={this.switchComponent}
-            setOnLoad={this.setOnLoad}            
+            setOnLoad={this.setOnLoad}
           />
         );
       case "Company":
         return (
           <Company
             switchComponent={this.switchComponent}
-            
+
             setOnLoad={this.setOnLoad}
-           
+
           />
         );
 
-        case "Products":
-          
-          return (
-            <Products
-              switchComponent={this.switchComponent}
-             
-              setOnLoad={this.setOnLoad}
-              
-            />
-          );
-          case "Helios":
-          
-          return (
-            <Helios
-              switchComponent={this.switchComponent}
-             
-              setOnLoad={this.setOnLoad}
-              
-            />
-          );
-          case "Theia":
-          
-            return (
-              <Theia
-                switchComponent={this.switchComponent}
-               
-                setOnLoad={this.setOnLoad}
-                
-              />
-            );
-            case "Plutus":
-          
-              return (
-                <Plutus
-                  switchComponent={this.switchComponent}
-                 
-                  setOnLoad={this.setOnLoad}
-                  
-                />
-              );
+       case "TrayMenu":
+        console.log("AuthComponent  Products")
+        return (
+          <TrayMenu 
+            switchComponent={this.switchComponent}
+            onBackButtonEvent={this.onBackButtonEvent}
+
+            setOnLoad={this.setOnLoad}
+          />
+        );
+
+
+      case "Helios":
+
+        return (
+          <Helios
+            switchComponent={this.switchComponent}
+
+            setOnLoad={this.setOnLoad}
+
+          />
+        );
+      case "Theia":
+
+        return (
+          <Theia
+            switchComponent={this.switchComponent}
+
+            setOnLoad={this.setOnLoad}
+
+          />
+        );
+      case "Plutus":
+
+        return (
+          <Plutus
+            switchComponent={this.switchComponent}
+
+            setOnLoad={this.setOnLoad}
+
+          />
+        );
       default:
         break;
     }
   };
   switchComponent = status => {
     
+    mContext.setState({ trayuser: status });
+    
     this.setState({ status });
-    console.log("status = ",status);
+    console.log("status = ", status);
     this.closeNavbar();
   };
-  
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -212,13 +217,13 @@ class App extends Component {
   setOnLoad(source) {
     this.setState({ loaded: source });
   }
-  setUser(user) {
-    mContext.setState({ user: user });
+  settrayUser(trayuser) {
+    mContext.setState({ trayuser: trayuser });
   }
   onHidden(hidden) {
     mContext.setState({ hasError: hidden.hasError });
   }
-  
+
   scroll(container, key, loop = false) {
     var element = document.getElementById(container);
     if (loop && this.state.mouseout) {
@@ -264,12 +269,13 @@ class App extends Component {
   }
 
   render() {
-    let {  links} = this.state;
+    let { links,trayuser } = this.state;
     var year = new Date().getFullYear();
+        
     return (
       <section>
         <div>
-        {/*<Router>*/}
+          {/*<Router>*/}
           <Navbar light expand="md" sticky={'top'} className="navbar-header">
 
             <NavbarBrand href="/"><img className="img img-responsive navbrand" src={logo} alt="logo" /></NavbarBrand>
@@ -279,54 +285,56 @@ class App extends Component {
               :
               <NavbarToggler onClick={this.toggle} />
             }
-
+          
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
-              {links.map((element, key) => {
+                {links.map((element, key) => {
                   return (
                     <NavItem key={element.menuId} active={element.isActive}>
+                      {key===1?
                       <NavLink active={element.isActive} href={element.href} className={element.className}
-                        onClick={() => { mContext.switchComponent(element.source);}}>{element.text}</NavLink>
+                        onMouseOver={() => { mContext.switchComponent(element.source); }}>{element.text}</NavLink>:
+                        <NavLink active={element.isActive} href={element.href} className={element.className}
+                        onClick={() => { mContext.switchComponent(element.source); }}>{element.text}</NavLink>}
                     </NavItem>
                   )
                 })}
               </Nav>
             </Collapse>
-          </Navbar> 
+          </Navbar>
           <div>{this.AuthComponent()}</div>
-        <footer className="footer">
-          <Col className="row">
-            <Col className="" md="12" sm="12" xs="12" lg="12" xl="12">
-              <Col md="12" sm="12" xs="12" lg="12" xl="12" className="text-center">
-                <Col className="footer-text">
-                  <ul className="footer-ul">
-                    <li className="list-inline-item">
-                      <a className="social-icon link" onClick={() => this.newTab(true)}>
-                        <i className="fa fa-linkedin-square"></i>
-                      </a>
-                    </li>
-                    {/* <li className="list-inline-item">
+          {!(trayuser==="TrayMenu" )?<footer className="footer">
+            <Col className="row">
+              <Col className="" md="12" sm="12" xs="12" lg="12" xl="12">
+                <Col md="12" sm="12" xs="12" lg="12" xl="12" className="text-center">
+                  <Col className="footer-text">
+                    <ul className="footer-ul">
+                      <li className="list-inline-item">
+                        <a className="social-icon link" onClick={() => this.newTab(true)}>
+                          <i className="fa fa-linkedin-square"></i>
+                        </a>
+                      </li>
+                      {/* <li className="list-inline-item">
                   <a className="social-icon" target="_blank" href="#">
                     <i className="fa fa-twitter"></i>
                   </a>
                 </li> */}
-                    <li className="list-inline-item">
-                      <a className="social-icon link" onClick={() => this.newTab(false)}>
-                        <i className="fa fa-instagram"></i>
-                      </a>
-                    </li>
-                    <li className="list-inline-item">
-                      <p>© {year} Triadh</p>
-                    </li>
-                  </ul>
+                      <li className="list-inline-item">
+                        <a className="social-icon link" onClick={() => this.newTab(false)}>
+                          <i className="fa fa-instagram"></i>
+                        </a>
+                      </li>
+                      <li className="list-inline-item">
+                        <p>© {year} Triadh</p>
+                      </li>
+                    </ul>
+                  </Col>
                 </Col>
               </Col>
             </Col>
-          </Col>
-        </footer>
-       
+          </footer>:null}
         </div>
-        
+
       </section>
     );
   }
