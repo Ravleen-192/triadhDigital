@@ -4,8 +4,6 @@ const  ImportCompnent =(menuId)=>{
             return require('../component/Company');
         case 2:
             return require('../component/Services');
-        case 3:
-            return require('../component/TrayMenu');
         case 4:
             return require('../component/contact');
         default:

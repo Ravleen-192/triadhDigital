@@ -5,12 +5,17 @@ import React, { Component } from 'react';
 import { node } from 'prop-types';
 import './css/App.css';
 import './css/bootstrap.min.css';
+import { Link, BrowserRouter as Router } from "react-router-dom";
 import ImportComponent from './common/ImportComponent';
+
+
 import Home from "./component/Home";
 import Services from "./component/Services";
-import TrayMenu from "./component/TrayMenu";
+import "./component/TrayMenu.css";
 import Company from "./component/Company";
-
+import icon1 from './image/heliosicon.jpg';
+import icon2 from './image/theiaIcon.jpg';
+import icon3 from './image/plutusIcon.jpg';
 import Contact from "./component/contact"
 import Theia from "./component/Theia";
 import Helios from "./component/Helios";
@@ -31,11 +36,6 @@ import {
 import logo from './image/logo_new.png';
 
 var mContext;
-const options = {
-  timeout: 10000,
-  position: positions.MIDDLE
-};
-
 
 class App extends Component {
   constructor() {
@@ -44,16 +44,15 @@ class App extends Component {
       isOpen: false,
       child: node,
       trayuser: null, // will contain our user data object when signed in
-      sideDrawerOpen: false,
       status: "Home", loaded: true, hasError: false, type: "", message: "",
       noti_open: false, user_open: false,
       links: [
         { href: '#Services', text: 'Services', menuId: 0, source: "Services", isActive: false },
         { href: '#TrayMenu', text: 'Products', menuId: 1, source: "TrayMenu", isActive: false },
         { href: '#Company', text: 'Company', menuId: 2, source: "Company", isActive: false },
-        { className: "frmbtn2", href: '#contact', text: 'Lets Talk', menuId: 3, source: "contact", isActive: false },
-
-      ]
+        { className: "td__navbar-menu_container-links-sign", href: null, text: 'Login',source: "login", menuId: 3, isActive: false },
+        { className: "frmbtn2", href: '#contact', text: 'Lets Talk', menuId: 4, source: "contact", isActive: false },
+        ]
     };
     mContext = this;
     this.toggle = this.toggle.bind(this);
@@ -61,12 +60,35 @@ class App extends Component {
     this.onClickMenuItem = this.onClickMenuItem.bind(this);
     this.toggle = this.toggle.bind(this);
 
+    this.handleClose = this.handleClose.bind(this);
+
+    this.handleClick = this.handleClick.bind(this);
+
   }
+  handleClose = () => this.setState({ trayuser: this.state.status });
+
+  handleClick = (event, type) => {
+    event.preventDefault();
+    switch (type) {
+      case "Helios": this.switchComponent("Helios");
+
+        break;
+      case "Theia": this.switchComponent("Theia");
+
+        break;
+      case "Plutus": this.switchComponent("Plutus");
+
+        break;
+      default:
+        break;
+    }
+
+  };
   componentWillMount() {
     this.onClickMenuItem(0);
     //window.location.hash = "#home";
   }
- 
+
   onClickMenuItem(menuId) {
     var Component = ImportComponent(menuId);
     this.setState({ child: <Component.default onClickMenuItem={this.onClickMenuItem}></Component.default> });
@@ -117,88 +139,448 @@ class App extends Component {
   }
 
   AuthComponent = () => {
+    let drawerClasses = 'side-drawer open row container-fuild';
+    let { trayuser } = this.state;
     switch (this.state.status) {
-      case "Home":
-        return (<Home
-          switchComponent={this.switchComponent}
-          setOnLoad={this.setOnLoad}
+      
+      case "Home": if (trayuser === "TrayMenu")
+        return (<>
 
-        />
-        );
+          <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+
+            <div class="offcanvas-body">
+              <nav className={drawerClasses}>
+                <Router>
+                  <button class="closebtn" onClick={this.handleClose}>&times;</button>
+                  <div className="  td__Prodheader-content prod-text" onClick={(e) => this.handleClick(e, "Helios")}>
+
+                    <Link to="/Helios" >
+                      <img
+                        src={icon1}
+                        alt="Helios"
+                      />
+                      <h3 >Helios</h3>
+                      <p>Vision platform</p>
+                    </Link>
+                  </div>
+                  <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Theia")}>
+                    <Link to="/Theia">
+                      <img
+                        src={icon2}
+                        alt="Theia"
+                      />
+
+                      <h3 >Theia</h3>
+                      <p>Data mesh portal </p>
+                    </Link>
+
+                  </div>
+                  <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Plutus")}>
+                    <Link to="/Plutus">
+                      <img
+                        src={icon3}
+                        alt="Plutus"
+                      />
+
+                      <h3 >Plutus </h3>
+                      <p>Data product catalog</p>
+                    </Link>
+
+                  </div>
+                </Router>
+
+              </nav>
+            </div>
+          </div>
+          <Home
+            switchComponent={this.switchComponent}
+            setOnLoad={this.setOnLoad}
+
+          /> </>
+        )
+      else return (<Home
+        switchComponent={this.switchComponent}
+        setOnLoad={this.setOnLoad}
+
+      />);
       case "contact":
-        return (<Contact
+        if (trayuser === "TrayMenu")
+          return (<>
+           <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+
+
+              <div class="offcanvas-body">
+                <nav className={drawerClasses}>
+                  <Router>
+                    <button class="closebtn" onClick={this.handleClose}>&times;</button>
+                    <div className="  td__Prodheader-content prod-text" onClick={(e) => this.handleClick(e, "Helios")}>
+
+                      <Link to="/Helios" >
+                        <img
+                          src={icon1}
+                          alt="Helios"
+                        />
+                        <h3 >Helios</h3>
+                        <p>Vision platform</p>
+                      </Link>
+                    </div>
+                    <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Theia")}>
+                      <Link to="/Theia">
+                        <img
+                          src={icon2}
+                          alt="Theia"
+                        />
+
+                        <h3 >Theia</h3>
+                        <p>Data mesh portal </p>
+                      </Link>
+
+                    </div>
+                    <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Plutus")}>
+                      <Link to="/Plutus">
+                        <img
+                          src={icon3}
+                          alt="Plutus"
+                        />
+
+                        <h3 >Plutus </h3>
+                        <p>Data product catalog</p>
+                      </Link>
+
+                    </div>
+                  </Router>
+
+                </nav>
+              </div>
+            </div>
+            <Contact
+              switchComponent={this.switchComponent}
+              setOnLoad={this.setOnLoad}
+
+            /> </>
+          )
+        else return (<Contact
           switchComponent={this.switchComponent}
           setOnLoad={this.setOnLoad}
 
-        />
-        );
+        />);
       case "Services":
-        return (
-          <Services
-            switchComponent={this.switchComponent}
-            setOnLoad={this.setOnLoad}
-          />
-        );
+        if (trayuser === "TrayMenu")
+          return (<>
+            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+
+
+              <div class="offcanvas-body">
+                <nav className={drawerClasses}>
+                  <Router>
+                    <button class="closebtn" onClick={this.handleClose}>&times;</button>
+                    <div className="  td__Prodheader-content prod-text" onClick={(e) => this.handleClick(e, "Helios")}>
+
+                      <Link to="/Helios" >
+                        <img
+                          src={icon1}
+                          alt="Helios"
+                        />
+                        <h3 >Helios</h3>
+                        <p>Vision platform</p>
+                      </Link>
+                    </div>
+                    <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Theia")}>
+                      <Link to="/Theia">
+                        <img
+                          src={icon2}
+                          alt="Theia"
+                        />
+
+                        <h3 >Theia</h3>
+                        <p>Data mesh portal </p>
+                      </Link>
+
+                    </div>
+                    <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Plutus")}>
+                      <Link to="/Plutus">
+                        <img
+                          src={icon3}
+                          alt="Plutus"
+                        />
+
+                        <h3 >Plutus </h3>
+                        <p>Data product catalog</p>
+                      </Link>
+
+                    </div>
+                  </Router>
+
+                </nav>
+              </div>
+            </div>
+            <Services
+              switchComponent={this.switchComponent}
+              setOnLoad={this.setOnLoad}
+
+            /> </>
+          )
+        else return (<Services
+          switchComponent={this.switchComponent}
+          setOnLoad={this.setOnLoad}
+
+        />);
       case "Company":
-        return (
-          <Company
-            switchComponent={this.switchComponent}
+        if (trayuser === "TrayMenu")
+          return (<>
+            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
 
-            setOnLoad={this.setOnLoad}
 
-          />
-        );
+              <div class="offcanvas-body">
+                <nav className={drawerClasses}>
+                  <Router>
+                    <button class="closebtn" onClick={this.handleClose}>&times;</button>
+                    <div className="  td__Prodheader-content prod-text" onClick={(e) => this.handleClick(e, "Helios")}>
 
-       case "TrayMenu":
-        console.log("AuthComponent  Products")
-        return (
-          <TrayMenu 
-            switchComponent={this.switchComponent}
-            onBackButtonEvent={this.onBackButtonEvent}
+                      <Link to="/Helios" >
+                        <img
+                          src={icon1}
+                          alt="Helios"
+                        />
+                        <h3 >Helios</h3>
+                        <p>Vision platform</p>
+                      </Link>
+                    </div>
+                    <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Theia")}>
+                      <Link to="/Theia">
+                        <img
+                          src={icon2}
+                          alt="Theia"
+                        />
 
-            setOnLoad={this.setOnLoad}
-          />
-        );
+                        <h3 >Theia</h3>
+                        <p>Data mesh portal </p>
+                      </Link>
 
+                    </div>
+                    <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Plutus")}>
+                      <Link to="/Plutus">
+                        <img
+                          src={icon3}
+                          alt="Plutus"
+                        />
+
+                        <h3 >Plutus </h3>
+                        <p>Data product catalog</p>
+                      </Link>
+
+                    </div>
+                  </Router>
+
+                </nav>
+              </div>
+            </div>
+            <Company
+              switchComponent={this.switchComponent}
+              setOnLoad={this.setOnLoad}
+
+            /> </>
+          )
+        else return (<Company
+          switchComponent={this.switchComponent}
+          setOnLoad={this.setOnLoad}
+
+        />);
 
       case "Helios":
 
-        return (
-          <Helios
-            switchComponent={this.switchComponent}
+        if (trayuser === "TrayMenu")
+          return (<>
+            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
 
-            setOnLoad={this.setOnLoad}
 
-          />
-        );
+              <div class="offcanvas-body">
+                <nav className={drawerClasses}>
+                  <Router>
+                    <button class="closebtn" onClick={this.handleClose}>&times;</button>
+                    <div className="  td__Prodheader-content prod-text" onClick={(e) => this.handleClick(e, "Helios")}>
+
+                      <Link to="/Helios" >
+                        <img
+                          src={icon1}
+                          alt="Helios"
+                        />
+                        <h3 >Helios</h3>
+                        <p>Vision platform</p>
+                      </Link>
+                    </div>
+                    <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Theia")}>
+                      <Link to="/Theia">
+                        <img
+                          src={icon2}
+                          alt="Theia"
+                        />
+
+                        <h3 >Theia</h3>
+                        <p>Data mesh portal </p>
+                      </Link>
+
+                    </div>
+                    <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Plutus")}>
+                      <Link to="/Plutus">
+                        <img
+                          src={icon3}
+                          alt="Plutus"
+                        />
+
+                        <h3 >Plutus </h3>
+                        <p>Data product catalog</p>
+                      </Link>
+
+                    </div>
+                  </Router>
+
+                </nav>
+              </div>
+            </div>
+            <Helios
+              switchComponent={this.switchComponent}
+              setOnLoad={this.setOnLoad}
+
+            /> </>
+          )
+        else return (<Helios
+          switchComponent={this.switchComponent}
+          setOnLoad={this.setOnLoad}
+
+        />);
       case "Theia":
+        if (trayuser === "TrayMenu")
+          return (<>
+           <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
 
-        return (
-          <Theia
-            switchComponent={this.switchComponent}
 
-            setOnLoad={this.setOnLoad}
+              <div class="offcanvas-body">
+                <nav className={drawerClasses}>
+                  <Router>
+                    <button class="closebtn" onClick={this.handleClose}>&times;</button>
+                    <div className="  td__Prodheader-content prod-text" onClick={(e) => this.handleClick(e, "Helios")}>
 
-          />
-        );
+                      <Link to="/Helios" >
+                        <img
+                          src={icon1}
+                          alt="Helios"
+                        />
+                        <h3 >Helios</h3>
+                        <p>Vision platform</p>
+                      </Link>
+                    </div>
+                    <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Theia")}>
+                      <Link to="/Theia">
+                        <img
+                          src={icon2}
+                          alt="Theia"
+                        />
+
+                        <h3 >Theia</h3>
+                        <p>Data mesh portal </p>
+                      </Link>
+
+                    </div>
+                    <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Plutus")}>
+                      <Link to="/Plutus">
+                        <img
+                          src={icon3}
+                          alt="Plutus"
+                        />
+
+                        <h3 >Plutus </h3>
+                        <p>Data product catalog</p>
+                      </Link>
+
+                    </div>
+                  </Router>
+
+                </nav>
+              </div>
+            </div>
+            <Theia
+              switchComponent={this.switchComponent}
+              setOnLoad={this.setOnLoad}
+
+            /> </>
+          )
+        else return (<Theia
+          switchComponent={this.switchComponent}
+          setOnLoad={this.setOnLoad}
+
+        />);
       case "Plutus":
+        if (trayuser === "TrayMenu")
+          return (<>
+            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
 
-        return (
-          <Plutus
-            switchComponent={this.switchComponent}
 
-            setOnLoad={this.setOnLoad}
+              <div class="offcanvas-body">
+                <nav className={drawerClasses}>
+                  <Router>
+                    <button class="closebtn" onClick={this.handleClose}>&times;</button>
+                    <div className="  td__Prodheader-content prod-text" onClick={(e) => this.handleClick(e, "Helios")}>
 
-          />
-        );
+                      <Link to="/Helios" >
+                        <img
+                          src={icon1}
+                          alt="Helios"
+                        />
+                        <h3 >Helios</h3>
+                        <p>Vision platform</p>
+                      </Link>
+                    </div>
+                    <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Theia")}>
+                      <Link to="/Theia">
+                        <img
+                          src={icon2}
+                          alt="Theia"
+                        />
+
+                        <h3 >Theia</h3>
+                        <p>Data mesh portal </p>
+                      </Link>
+
+                    </div>
+                    <div className="  td__Prodheader-content  prod-text" onClick={(e) => this.handleClick(e, "Plutus")}>
+                      <Link to="/Plutus">
+                        <img
+                          src={icon3}
+                          alt="Plutus"
+                        />
+
+                        <h3 >Plutus </h3>
+                        <p>Data product catalog</p>
+                      </Link>
+
+                    </div>
+                  </Router>
+
+                </nav>
+              </div>
+            </div>
+            <Plutus
+              switchComponent={this.switchComponent}
+              setOnLoad={this.setOnLoad}
+
+            /> </>
+          )
+        else return (<Plutus
+          switchComponent={this.switchComponent}
+          setOnLoad={this.setOnLoad}
+
+        />);
       default:
         break;
     }
   };
   switchComponent = status => {
-    
-    mContext.setState({ trayuser: status });
-    
+    if(status==="login")
+    { var url = "https://master.d36f8cafq27e48.amplifyapp.com/" ;
+    window.open(url, "_blank"); 
+    return;}
+    this.setState({ trayuser: status });
     this.setState({ status });
     console.log("status = ", status);
     this.closeNavbar();
@@ -269,9 +651,9 @@ class App extends Component {
   }
 
   render() {
-    let { links,trayuser } = this.state;
+    let { links, trayuser } = this.state;
     var year = new Date().getFullYear();
-        
+
     return (
       <section>
         <div>
@@ -285,17 +667,19 @@ class App extends Component {
               :
               <NavbarToggler onClick={this.toggle} />
             }
-          
+
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 {links.map((element, key) => {
                   return (
                     <NavItem key={element.menuId} active={element.isActive}>
-                      {key===1?
-                      <NavLink active={element.isActive} href={element.href} className={element.className}
-                        onMouseOver={() => { mContext.switchComponent(element.source); }}>{element.text}</NavLink>:
+                      
+                      {key === 1 ?
                         <NavLink active={element.isActive} href={element.href} className={element.className}
-                        onClick={() => { mContext.switchComponent(element.source); }}>{element.text}</NavLink>}
+                          onClick={() => { if (trayuser === "TrayMenu") this.setState({ trayuser: this.state.status }); else { this.setState({ trayuser: "TrayMenu" }); } }}>{element.text}</NavLink> 
+                         :
+                        <NavLink active={element.isActive} href={element.href} className={element.className}
+                          onClick={() => { mContext.switchComponent(element.source); }}>{element.text}</NavLink>}
                     </NavItem>
                   )
                 })}
@@ -303,7 +687,7 @@ class App extends Component {
             </Collapse>
           </Navbar>
           <div>{this.AuthComponent()}</div>
-          {!(trayuser==="TrayMenu" )?<footer className="footer">
+          <footer className="footer">
             <Col className="row">
               <Col className="" md="12" sm="12" xs="12" lg="12" xl="12">
                 <Col md="12" sm="12" xs="12" lg="12" xl="12" className="text-center">
@@ -332,7 +716,7 @@ class App extends Component {
                 </Col>
               </Col>
             </Col>
-          </footer>:null}
+          </footer>
         </div>
 
       </section>

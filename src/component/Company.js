@@ -61,39 +61,7 @@ export default class Company extends Component {
               </div>
             </div>
           </Col>
-          {/*<Col md="3" sm="12" xs="12" lg="3" xl="3"className="mb_20 company" >
-            <div class="card">
-              <div class="box">
-                <div class="img">
-                  <img class="gray" src={navImg}/>
-                </div>
-                <h2>NAVEED PATEL<br/><span>CSO</span></h2>
-                <p> 20+ Years of Product Strategy and Solutions implementation experience.</p>
-                <span>
-                  <ul>
-                    <li><a onClick={()=>window.open("https://www.linkedin.com/in/naveedpatel/", "_blank")}><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                  </ul>
-                </span>
-              </div>
-            </div>
-          </Col>
-          <Col md="3" sm="12" xs="12" lg="3" xl="3" className="mb_20 company">
-            <div class="card">
-              <div class="box">
-                <div class="img">
-                  <img class="gray" src={aminImg}/>
-                </div>
-                <h2>AMIN CHANDANI<br/><span>COO</span></h2>
-                <p> 20+ Years of Business and Human Capital Development experience.</p>
-                <span>
-                  <ul>
-                    <li><a onClick={()=>window.open("https://www.linkedin.com/in/aminchandani/", "_blank")}><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                  </ul>
-                </span>
-              </div>
-            </div>
-          </Col>*/
-    }
+         
           <Col md="6" sm="12" xs="12" lg="6" xl="6" className="mb_20 company" >
             <div class="card">
                 <div class="box">
@@ -111,86 +79,7 @@ export default class Company extends Component {
             </div>
           </Col>
         </div>
-        {/* <div className="row">
-          <Col md="4" sm="12" xs="12" lg="4" xl="4" className=" company" />
-          <Col md="4" sm="12" xs="12" lg="4" xl="4" className="mb_20 company" >
-            <div class="card">
-                <div class="box">
-                    <div class="img">
-                        <img src={velImg}/>
-                    </div>
-                    <h2>VELAYUDHAM MURUGESAN<br/><span>CTO</span></h2>
-                    <p> 25 Years of Software & Consumer Electronics Product Development Experience.</p>
-                    <span>
-                      <ul>
-                        <li><a onClick={()=>window.open("https://www.linkedin.com/in/velayudhammurugesan/", "_blank")}><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                      </ul>
-                    </span>
-                </div>
-            </div>
-          </Col>
-          <Col md="4" sm="12" xs="12" lg="4" xl="4" className=" company" ></Col>
-        </div> */}
-        {/* <div className="row mt_20 mb_20">
-          <Col md="6" sm="12" xs="12" lg="6" xl="6" >
-            <img className="img img-responsive image" src={contImg} alt="logo" />
-          </Col>
-          <Col md="6" sm="12" xs="12" lg="6" xl="6">
-            <Col className="p-all-100">
-              <p className="txt">SENTHIL KUMAR</p> 
-              <p>Founder & CEO</p>
-              <p>20+ Years of technology and product development experience.</p>  
-              <a className="social-icon link" onClick={()=>window.open("https://www.linkedin.com/in/esenthilkumar/", "_blank")}>
-                <i className="fa fa-linkedin-square"></i>
-              </a>
-            </Col>  
-          </Col>
-        </div>
-        <div className="row mt_20 mb_20">
-          <Col md="6" sm="12" xs="12" lg="6" xl="6" >
-            <img className="img img-responsive image" src={navImg} alt="logo" />
-          </Col>
-          <Col md="6" sm="12" xs="12" lg="6" xl="6">
-            <Col className="p-all-100">
-              <p className="txt">NAVEED PATEL</p> 
-              <p>PARTNER & CSO</p>
-              <p>20+ Years of Product Strategy and Solutions implementation experience.</p>  
-              <a className="social-icon link" onClick={()=>window.open("https://www.linkedin.com/in/naveedpatel/", "_blank")}>
-                <i className="fa fa-linkedin-square"></i>
-              </a>
-            </Col>  
-          </Col>
-        </div>
-        <div className="row mt_20 mb_20">
-          <Col md="6" sm="12" xs="12" lg="6" xl="6" >
-            <img className="img img-responsive image" src={aminImg} alt="logo" />
-          </Col>
-          <Col md="6" sm="12" xs="12" lg="6" xl="6">
-            <Col className="p-all-100">
-              <p className="txt">AMIN CHANDANI</p> 
-              <p>PARTNER & COO</p>
-              <p>20+ Years of Business and Human Capital Development experience.</p>  
-              <a className="social-icon link" onClick={()=>window.open("https://www.linkedin.com/in/aminchandani/", "_blank")}>
-                <i className="fa fa-linkedin-square"></i>
-              </a>
-            </Col>  
-          </Col>
-        </div>
-        <div className="row mt_20 mb_20">
-          <Col md="6" sm="12" xs="12" lg="6" xl="6" >
-            <img className="img img-responsive image" src={velImg} alt="logo" />
-          </Col>
-          <Col md="6" sm="12" xs="12" lg="6" xl="6">
-            <Col className="p-all-100">
-              <p className="txt">VELAYUDHAM MURUGESAN</p> 
-              <p>CTO</p>
-              <p>25 Years of Software & Consumer Electronics Product Development Experience.</p>  
-              <a className="social-icon link" onClick={()=>window.open("https://www.linkedin.com/in/velayudhammurugesan/", "_blank")}>
-                <i className="fa fa-linkedin-square"></i>
-              </a>
-            </Col>  
-          </Col>
-        </div> */}
+      
       </div>
     );
   }

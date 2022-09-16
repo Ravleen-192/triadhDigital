@@ -24,6 +24,7 @@ export default class Contact extends Component {
       contactModel: new ContactModel(),
       autoFocus: false,
       loading: false,
+      errMessage: "",
     };
     mcontext = this;
     this.focusRef = React.createRef();
@@ -36,95 +37,61 @@ export default class Contact extends Component {
   }
   submitForm() {
     let { alert } = this.props;
+    var errMessage = "";
     let { contactModel } = this.state;
-
-    //loadReCaptcha("6LcsnPIUAAAAAFtykko0C3nRDGC52DmOaLsSZbKx", this.callback);
-    if (!contactModel.name) {
-      this.refs.name.focus();
-      this.setState({ nameError: "Name Required" });
-      window.scrollTo(0, 0);
-      return;
-    } else {
-      this.setState({ nameError: null });
-    }
-    if (!contactModel.title) {
-      this.refs.title.focus();
-      this.setState({ titleError: "Job Title Required" });
-      window.scrollTo(0, 0);
-      return;
-    } else {
-      this.setState({ titleError: null });
-    }
+    if (!contactModel.name)
+      errMessage = errMessage + "Name Required. \r\n";
+    if (!contactModel.title)
+      errMessage = errMessage + "Job Title Required. \r\n";
     if (!contactModel.email) {
-      this.refs.email.focus();
-      this.setState({ emailError: "Work Email Required" });
-      window.scrollTo(0, 0);
-      return;
+      errMessage = errMessage + "Email Required. \r\n";
     } else if (!validator.validate(contactModel.email)) {
-      this.refs.email.focus();
-      this.setState({ emailError: "Please enter valid email" });
-      window.scrollTo(0, 0);
-      return;
-    } else {
-      this.setState({ emailError: null });
+      errMessage = errMessage + "Please enter a valid email. \r\n";
     }
-    if (!contactModel.phone) {
+    if (!contactModel.phone)
+      errMessage = errMessage + "Work Phone Required. \r\n";
 
-      //this.refs.phoneInputRef.focus();
-      this.setState({ phoneError: "Work Phone Required", autoFocus: true });
-      window.scrollTo(0, 0);
-      return;
-    } else {
-      this.setState({ phoneError: null });
-    }
-    if (!contactModel.comname) {
-      this.refs.comname.focus();
-      this.setState({ companyError: "Company Name Required" });
-      window.scrollTo(0, 0);
-      return;
-    } else {
-      this.setState({ companyError: null });
-    }
+
     if (!contactModel.message) {
-      this.refs.message.focus();
-      this.setState({ messageError: "Message Required" });
-    } else {
-      this.setState({ messageError: null });
+      errMessage = errMessage + "Message Required. \r\n";
     }
-    mcontext.setOnProgress();
-    var form = new FormData()
-    form.append('name', contactModel.name);
-    form.append('title', contactModel.title);
-    form.append('email', contactModel.email);
-    form.append('phone', contactModel.phone);
-    //form.append('comname', contactModel.comname);
-    form.append('message', contactModel.message);
-    form.append('recaptcha', this.captchatoken);
-    var xhr = new XMLHttpRequest()
-    //xhr.withCredentials = true;
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        console.log("status = ", xhr.status);
-        mcontext.setOnProgress();
-        if (xhr.status === 200) {
-          alert.show("Thank you for the interest. We will contact you within one business day.", {
-            title: "Success"
-          });
-          mcontext.setState({ contactModel: new ContactModel() })
-        } else {
-          alert.show("Please try again after some time");
+    if (errMessage === "") {
+      mcontext.setOnProgress();
+      var form = new FormData()
+      form.append('name', contactModel.name);
+      form.append('title', contactModel.title);
+      form.append('email', contactModel.email);
+      form.append('phone', contactModel.phone);
+      //form.append('comname', contactModel.comname);
+      form.append('message', contactModel.message);
+      form.append('recaptcha', this.captchatoken);
+      var xhr = new XMLHttpRequest()
+      //xhr.withCredentials = true;
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          console.log("status = ", xhr.status);
+          mcontext.setOnProgress();
+          if (xhr.status === 200) {
+            alert.show("Thank you for the interest. We will contact you within one business day.", {
+              title: "Success"
+            });
+            mcontext.setState({ contactModel: new ContactModel() })
+          } else {
+            alert.show("Please try again after some time");
+          }
+          console.log(xhr.responseText)
         }
-        console.log(xhr.responseText)
       }
+      //xhr.open("POST","https://toxsswlv99.execute-api.us-east-1.amazonaws.com/prod/dsk");
+      xhr.open("POST", "https://hdy1gtzwre.execute-api.us-east-1.amazonaws.com/default/SendEmail-test");
+      xhr.setRequestHeader("content-type", "application/json");
+      xhr.send(form);
     }
-    // xhr.open("POST","https://toxsswlv99.execute-api.us-east-1.amazonaws.com/prod/dsk");
-    xhr.open("POST", "https://hdy1gtzwre.execute-api.us-east-1.amazonaws.com/default/SendEmail-test");
-    xhr.setRequestHeader("content-type", "application/json");
-    xhr.send(form);
-  }
-  verifyCallback = (recaptchaToken) => {
-    // Here you will get the final recaptchaToken!!!  
-    console.log(recaptchaToken, "<= your recaptcha token")
+    else {
+      console.log("Error Message", errMessage);
+      this.setState({ errMessage: errMessage });
+    }
+
   }
   setOnProgress() {
     mcontext.setState(prevState => ({ loading: !prevState.loading }));
@@ -155,62 +122,62 @@ export default class Contact extends Component {
         </GoogleReCaptchaProvider>
         <div class=" wrap text-center contact-text mb_20">
           <div class="resp col-md-6">
-            <div className="row mt_20">
+            <div className="row mt_20 mb_20">
 
               <div><Label className="content lbl_txt">Name:<sup className="red_star">*</sup></Label></div>
 
               <div>
-              {/* <input type="file" onChange={(event)=>this.Upload(event)}></input> */}
-              <input type="text" className="form-control"
-                value={contactModel.name ? contactModel.name : ""}
-                ref={"name"}
-                onChange={(event) => {
-                  event.preventDefault();
-                  contactModel.name = event.target.value;
-                  this.setState({ contactModel, nameError: null })
-                }}
-                maxLength={50} required></input>
-              {this.state.nameError ? <span className="error-lbl">{this.state.nameError}</span> : null}
+                {/* <input type="file" onChange={(event)=>this.Upload(event)}></input> */}
+                <input type="text" className="form-control"
+                  value={contactModel.name ? contactModel.name : ""}
+                  ref={"name"}
+                  onChange={(event) => {
+                    event.preventDefault();
+                    contactModel.name = event.target.value;
+                    this.setState({ contactModel, nameError: null })
+                  }}
+                  maxLength={50} required></input>
+                {this.state.nameError ? <span className="error-lbl">{this.state.nameError}</span> : null}
               </div>
             </div>
-            <div className="row mt_20">
+            <div className="row mt_20 mb_20">
 
               <div><Label className="content lbl_txt">Job Title:<sup className="red_star">*</sup></Label></div>
 
               <div>
-              <input type="text" className="form-control"
-                value={contactModel.title ? contactModel.title : ''}
-                ref={"title"}
-                onChange={(event) => {
-                  event.preventDefault();
-                  contactModel.title = event.target.value;
-                  this.setState({ contactModel, titleError: null })
-                }}
-                maxLength={30}
-                required></input>
-              {this.state.titleError ? <span className="error-lbl">{this.state.titleError}</span> : null}
+                <input type="text" className="form-control"
+                  value={contactModel.title ? contactModel.title : ''}
+                  ref={"title"}
+                  onChange={(event) => {
+                    event.preventDefault();
+                    contactModel.title = event.target.value;
+                    this.setState({ contactModel, titleError: null })
+                  }}
+                  maxLength={30}
+                  required></input>
+                {this.state.titleError ? <span className="error-lbl">{this.state.titleError}</span> : null}
               </div>
             </div>
-            </div>
+          </div>
           <div class="resp col-md-6">
-            <div className="row mt_20">
+            <div className="row mt_20 mb_20">
 
 
               <div><Label className="content lbl_txt">Work Email:<sup className="red_star">*</sup></Label></div>
 
               <div>
-              <input type="email" className="form-control"
-                value={contactModel.email ? contactModel.email : ''}
-                ref={"email"}
-                onChange={(event) => {
-                  event.preventDefault();
-                  contactModel.email = event.target.value;
-                  this.setState({ contactModel, emailError: null })
-                }}
-                required></input>
-              {this.state.emailError ? <span className="error-lbl">{this.state.emailError}</span> : null}
+                <input type="email" className="form-control"
+                  value={contactModel.email ? contactModel.email : ''}
+                  ref={"email"}
+                  onChange={(event) => {
+                    event.preventDefault();
+                    contactModel.email = event.target.value;
+                    this.setState({ contactModel, emailError: null })
+                  }}
+                  required></input>
+                {this.state.emailError ? <span className="error-lbl">{this.state.emailError}</span> : null}
               </div>
-            </div><div className="row mt_20">
+            </div><div className="row mt_20 mb_20">
 
               <div><Label className="content lbl_txt">Work Phone:<sup className="red_star">*</sup></Label></div>
 
@@ -239,8 +206,11 @@ export default class Contact extends Component {
         <div className="text-center contact-text mb_20">
           <Col >
             <div className="row mt_20 mb_20">
+
               <Col md="2" lg="2" xl="2"></Col>
+
               <Col md='8 vcenter' sm="12" xs="12" lg="8" xl="8">
+
                 <textarea className="form-control content" type="textarea" id="message" placeholder="Message"
                   value={contactModel.message ? contactModel.message : ""}
                   ref={"message"}
@@ -250,9 +220,7 @@ export default class Contact extends Component {
                     this.setState({ contactModel, messageError: null })
                   }}
                   maxLength={2000} rows="7"></textarea>
-                <Col className="row">
-                  {this.state.messageError ? <span className="error-lbl-textarea">{this.state.messageError}</span> : null}
-                </Col>
+
               </Col>
 
               <Col md="2" lg="2" xl="2"></Col>
@@ -260,6 +228,11 @@ export default class Contact extends Component {
             <div className="row mt_20 mb_20">
               <Col md='12 vcenter' sm="12" xs="12" lg="12" xl="12">
                 <Button className="submitBtn" onClick={() => this.submitForm()}>Submit</Button>
+              </Col>
+            </div>
+            <div className="row mt_20 mb_20">
+              <Col md='12 vcenter' sm="12" xs="12" lg="12" xl="12">
+                {this.state.errMessage ? <div className="row text-center error-lbl-textarea">{this.state.errMessage}</div> : null}
               </Col>
             </div>
           </Col>

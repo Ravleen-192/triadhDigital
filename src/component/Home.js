@@ -81,7 +81,7 @@ export default class Home extends Component{
             <div className="container-fuild mt_20 mb_20">
                 <div className="row">
                     <Col md="4" sm="12" xs="12" lg="4" xl="4" className="mb_20">
-                        <ReactCardFlip isFlipped={this.state.isFlipped1} flipDirection="horizontal" infinite flipSpeedFrontToBack={1.5} flipSpeedBackToFront={1.5}>
+                        <ReactCardFlip isFlipped={this.state.isFlipped1} flipDirection="horizontal" infinite flipSpeedFrontToBack={3.0} flipSpeedBackToFront={3.0}>
                             <div className="frontside"  onClick={(e)=>this.handleClick(e,"first")}>
                                 <div className="card bg_img_front_1">
                                     <div className="card-body text-center">
@@ -103,7 +103,7 @@ export default class Home extends Component{
                         </ReactCardFlip>
                     </Col>
                     <Col md="4" sm="12" xs="12" lg="4" xl="4" className="mb_20">
-                        <ReactCardFlip isFlipped={this.state.isFlipped2} flipDirection="horizontal" infinite flipSpeedFrontToBack={1.5} flipSpeedBackToFront={1.5}>
+                        <ReactCardFlip isFlipped={this.state.isFlipped2} flipDirection="horizontal" infinite flipSpeedFrontToBack={3.0} flipSpeedBackToFront={3.0}>
                             <div className="frontside"  onClick={(e)=>this.handleClick(e,"second")}>
                                 <div className="card bg_img_front_2">
                                     <div className="card-body text-center">
@@ -123,7 +123,7 @@ export default class Home extends Component{
                         </ReactCardFlip>
                     </Col>
                     <Col md="4" sm="12" xs="12" lg="4" xl="4" className="mb_20">
-                        <ReactCardFlip isFlipped={this.state.isFlipped3} flipDirection="horizontal" infinite flipSpeedFrontToBack={1.5} flipSpeedBackToFront={1.5}>
+                        <ReactCardFlip isFlipped={this.state.isFlipped3} flipDirection="horizontal" infinite flipSpeedFrontToBack={3.0} flipSpeedBackToFront={3.0}>
                             <div className="frontside"  onClick={(e)=>this.handleClick(e,"third")}>
                                 <div className="card bg_img_front_1">
                                     <div className="card-body text-center">
